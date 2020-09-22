@@ -1,0 +1,118 @@
+* Basics
+Disabling menu/tool/scroll bars
+
+#+begin_src emacs-lisp
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+#+end_src
+
+Disabling startup message
+#+begin_src emacs-lisp
+(setq inhibit-startup-message t)
+#+end_src
+
+* Terminal
+** Setting default shell to bash
+#+begin_src emacs-lisp
+  (defvar my-term-shell "/bin/bash")
+  (defadvice ansi-term (before force-bash)
+    (interactive (list my-term-shell)))
+  (ad-activate 'ansi-term)
+#+end_src
+
+* Projects
+
+To manage project files we need a nice file tree
+#+begin_src emacs-lisp
+  (use-package neotree
+    :ensure t
+    :bind (([f8] . neotree-toggle)))
+#+end_src
+
+To make the file tree prettier, we need nice icons
+#+begin_src emacs-lisp
+  (use-package all-the-icons
+    :ensure t)
+  (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+#+end_src
+* Git
+Let's install magit for git support
+#+begin_src emacs-lisp
+  (use-package magit
+    :ensure t)
+#+end_src
+* Org
+** Org bullets
+#+begin_src emacs-lisp
+  (use-package org-bullets
+    :ensure t
+    :config
+    (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+#+end_src
+
+* IDO
+#+begin_src emacs-lisp
+  (use-package ido
+    :ensure t
+    :init
+    (ido-mode t))
+#+end_src
+
+* elcord
+#+begin_src emacs-lisp
+  (use-package elcord
+    :ensure t
+    :init
+    (elcord-mode))
+#+end_src
+
+* Which-key
+#+begin_src emacs-lisp
+  (use-package which-key
+    :ensure t
+    :init
+    (which-key-mode))
+#+end_src
+
+* Beacon
+#+begin_src emacs-lisp
+  (use-package beacon
+    :ensure t
+    :init
+    (beacon-mode 1))
+#+end_src
+
+* Utilities
+** y-or-n-p
+Uses y-or-n-p instead of 'yes-or-no-p
+#+begin_src emacs-lisp
+  (defalias 'yes-or-no-p 'y-or-n-p)
+#+end_src
+
+** Scroll conservatively
+#+begin_src emacs-lisp
+  (setq scroll-conservatively 100)
+#+end_src
+
+** Ring bell
+#+begin_src emacs-lisp
+  (setq ring-bell-function 'ignore)
+#+end_src 
+
+** Line highlighting
+#+begin_src emacs-lisp
+  (when window-system (global-hl-line-mode t))
+#+end_src
+
+** Symbols prettifying
+#+begin_src emacs-lisp
+  (when window-system (global-prettify-symbols-mode t))
+#+end_src
+
+** Backups, autosaves
+#+begin_src emacs-lisp
+  (setq make-backup-file nil)
+  (setq auto-save-default nil)
+#+end_src
+
