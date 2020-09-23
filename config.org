@@ -12,6 +12,11 @@ Disabling startup message
 (setq inhibit-startup-message t)
 #+end_src
 
+Show line numbers
+#+begin_src emacs-lisp
+  (global-display-line-numbers-mode)
+#+end_src
+
 * Terminal
 ** Setting default shell to bash
 #+begin_src emacs-lisp
@@ -36,6 +41,23 @@ To make the file tree prettier, we need nice icons
     :ensure t)
   (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
 #+end_src
+
+Let's also add projectile
+#+begin_src emacs-lisp
+  (use-package projectile
+    :ensure t)
+  (projectile-mode +1)
+  (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+#+end_src
+
+Let's also add syntax checking
+#+begin_src emacs-lisp
+  (use-package flycheck
+    :ensure t
+    :init (global-flycheck-mode))
+#+end_src
+
 * Git
 Let's install magit for git support
 #+begin_src emacs-lisp
@@ -58,8 +80,38 @@ Let's install magit for git support
     :init
     (ido-mode t))
 #+end_src
+* LSP
+#+begin_src emacs-lisp
+  (use-package lsp-mode
+    :ensure t
+    :hook (
+	   (rust-mode . lsp)
+	   (lsp-mode . lsp-enable-which-key-integration))
+    :commands lsp)
+#+end_src
+* Rust
+Let's install rust-mode !
+#+begin_src emacs-lisp
+  (use-package rust-mode
+    :ensure t)
+#+end_src
 
-* elcord
+Add some formatting setup
+#+begin_src emacs-lisp
+  (add-hook 'rust-mode-hook
+	    (lambda () (setq indent-tabs-mode nil)))
+  (setq rust-format-on-save t)
+#+end_src
+
+Add flycheck support
+#+begin_src emacs-lisp
+  (use-package flycheck-rust
+    :ensure t
+    :after rust-mode
+    :config
+    (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+#+end_src
+* Elcord,
 #+begin_src emacs-lisp
   (use-package elcord
     :ensure t
@@ -115,4 +167,5 @@ Uses y-or-n-p instead of 'yes-or-no-p
   (setq make-backup-file nil)
   (setq auto-save-default nil)
 #+end_src
+
 
