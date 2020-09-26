@@ -31,7 +31,7 @@
    '("2679db166117d5b26b22a8f12a940f5ac415d76b004de03fcd34483505705f62" "4cf9ed30ea575fb0ca3cff6ef34b1b87192965245776afa9e9e20c17d115f3fb" "aded61687237d1dff6325edb492bde536f40b048eab7246c61d5c6643c696b7f" default))
  '(elcord-mode t nil (elcord))
  '(package-selected-packages
-   '(lsp-mode magit humanoid-themes projectile neotree elcord org-bullets beacon gruvbox-theme which-key use-package)))
+   '(cargo avy lsp-mode magit humanoid-themes projectile neotree elcord org-bullets beacon gruvbox-theme which-key use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

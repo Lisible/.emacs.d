@@ -17,6 +17,32 @@ Show line numbers
   (global-display-line-numbers-mode)
 #+end_src
 
+Config editing
+#+begin_src emacs-lisp
+  (defun config-visit ()
+    (interactive)
+    (find-file "~/.emacs.d/config.org"))
+  (global-set-key (kbd "C-c e") 'config-visit)
+#+end_src
+
+Config reloading
+#+begin_src emacs-lisp
+  (defun config-reload ()
+    (interactive)
+    (org-babel-load-file (expand-file-name "~/.emacs.d/config.org")))
+  (global-set-key (kbd "C-c r") 'config-reload)
+#+end_src
+
+Move backup files in a specific folder
+#+begin_src emacs-lisp
+  (setq backup-directory-alist '(("" . "~/.emacs.d/backup")))
+#+end_src
+
+Disabling emacs auto-saves
+#+begin_src emacs-lisp
+  (setq auto-save-default nil)
+#+end_src
+
 * Terminal
 ** Setting default shell to bash
 #+begin_src emacs-lisp
@@ -80,6 +106,13 @@ Let's install magit for git support
     :init
     (ido-mode t))
 #+end_src
+* Avy
+#+begin_src emacs-lisp
+  (use-package avy
+    :ensure t
+    :bind
+    ("M-s" . avy-goto-char))
+#+end_src
 * LSP
 #+begin_src emacs-lisp
   (use-package lsp-mode
@@ -111,7 +144,8 @@ Add flycheck support
     :config
     (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
 #+end_src
-* Elcord,
+
+* Elcord
 #+begin_src emacs-lisp
   (use-package elcord
     :ensure t
