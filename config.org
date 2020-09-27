@@ -43,13 +43,17 @@ Disabling emacs auto-saves
   (setq auto-save-default nil)
 #+end_src
 
-* Terminal
-** Setting default shell to bash
+Add emoji support
 #+begin_src emacs-lisp
-  (defvar my-term-shell "/bin/bash")
-  (defadvice ansi-term (before force-bash)
-    (interactive (list my-term-shell)))
-  (ad-activate 'ansi-term)
+  (use-package emojify
+    :ensure t
+    :hook (after-init . global-emojify-mode))
+#+End_src
+* Terminal
+** Install vterm
+#+begin_src emacs-lisp
+  (use-package vterm
+    :ensure t)
 #+end_src
 
 * Projects
