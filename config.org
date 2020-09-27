@@ -84,6 +84,14 @@ Let's also add syntax checking
     :init (global-flycheck-mode))
 #+end_src
 
+And add inline messages for flycheck
+#+begin_src emacs-lisp
+  (use-package flycheck-inline
+    :ensure t
+    :after flycheck
+    (add-hook 'flycheck-mode-hook #'flycheck-inline-mode))
+#+end_src
+
 * Git
 Let's install magit for git support
 #+begin_src emacs-lisp
