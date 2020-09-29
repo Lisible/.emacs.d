@@ -17,6 +17,25 @@ Show line numbers
   (global-display-line-numbers-mode)
 #+end_src
 
+Show columns
+#+begin_src emacs-lisp
+  (column-number-mode 1)
+#+end_src
+
+Subword
+#+begin_src emacs-lisp
+  (global-subword-mode 1)
+#+end_src
+
+Electric
+#+begin_src emacs-lisp
+  (setq electric-pair-pairs '(
+			      (?\( . ?\))
+			      (?\[ . ?\])
+			      ))
+  (electric-pair-mode t)
+#+end_src
+
 Config editing
 #+begin_src emacs-lisp
   (defun config-visit ()
@@ -103,6 +122,10 @@ Let's install magit for git support
     :ensure t)
 #+end_src
 * Org
+** basic config
+#+begin_src emacs-lisp
+  (setq org-src-window-setup 'current-window)
+#+end_src
 ** Org bullets
 #+begin_src emacs-lisp
   (use-package org-bullets
@@ -173,6 +196,31 @@ Add flycheck support
     (which-key-mode))
 #+end_src
 
+* switch-window
+#+begin_src emacs-lisp
+  (use-package switch-window
+    :ensure t
+    :config
+    (setq switch-window-input-style 'minibuffer)
+    (setq switch-window-increase 4)
+    (setq switch-window-threshold 2)
+    (setq switch-window-shortcut-style 'qwerty)
+    (setq switch-window-qwerty-shortcuts
+	  '("q" "s" "d" "f" "h" "j" "k" "l"))
+    :bind
+    ([remap other-window] . switch-window))
+#+end_src
+* Rainbow
+#+begin_src emacs-lisp
+  (use-package rainbow-mode
+    :ensure t
+    :init (rainbow-mode 1))
+
+  (use-package rainbow-delimiters
+    :ensure t
+    :init
+    (rainbow-delimiters-mode 1))
+#+end_src
 * Beacon
 #+begin_src emacs-lisp
   (use-package beacon
@@ -215,3 +263,10 @@ Uses y-or-n-p instead of 'yes-or-no-p
 #+end_src
 
 
+* Autocompletion
+#+begin_src emacs-lisp
+  (use-package company
+    :ensure t
+    :init
+    (add-hook 'after-init-hook 'global-company-mode))
+#+end_src
