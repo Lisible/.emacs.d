@@ -115,6 +115,19 @@ And add inline messages for flycheck
     (add-hook 'flycheck-mode-hook #'flycheck-inline-mode))
 #+end_src
 
+* Snippets
+Let's install yasnippet
+#+begin_src emacs-lisp
+  (use-package yasnippet
+    :ensure t)
+  (yas-global-mode 1)
+#+end_src
+
+Now we can add snippets !
+#+begin_src emacs-lisp
+  (use-package yasnippet-snippets
+    :ensure t)
+#+end_src
 * Git
 Let's install magit for git support
 #+begin_src emacs-lisp
@@ -155,7 +168,8 @@ Let's install magit for git support
     :hook (
 	   (rust-mode . lsp)
 	   (lsp-mode . lsp-enable-which-key-integration))
-    :commands lsp)
+    :commands lsp
+    :bind("C-c l" . lsp-command-map))
 #+end_src
 * Rust
 Let's install rust-mode !
