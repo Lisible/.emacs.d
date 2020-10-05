@@ -147,6 +147,23 @@ Let's install magit for git support
     (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 #+end_src
 
+* LSP
+Installing LSP mode
+#+begin_src emacs-lisp
+  (use-package lsp-mode
+    :ensure t
+    :commands lsp
+    :init (setq lsp-keymap-prefix "C-c l")
+    :hook (
+	   (rust-mode . lsp)
+	   (lsp-mode . lsp-enable-which-key-integration)))
+#+end_src
+
+Installing lsp-ui
+#+begin_src emacs-lisp
+  (use-package lsp-ui
+    :ensure t)
+#+end_src
 * IDO
 #+begin_src emacs-lisp
   (use-package ido
@@ -160,16 +177,6 @@ Let's install magit for git support
     :ensure t
     :bind
     ("M-s" . avy-goto-char))
-#+end_src
-* LSP
-#+begin_src emacs-lisp
-  (use-package lsp-mode
-    :ensure t
-    :hook (
-	   (rust-mode . lsp)
-	   (lsp-mode . lsp-enable-which-key-integration))
-    :commands lsp
-    :bind("C-c l" . lsp-command-map))
 #+end_src
 * Rust
 Let's install rust-mode !
