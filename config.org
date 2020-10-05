@@ -68,6 +68,27 @@ Add emoji support
     :ensure t
     :hook (after-init . global-emojify-mode))
 #+End_src
+* Modeline
+Installing spaceline
+#+begin_src emacs-lisp
+  (use-package spaceline
+    :ensure t
+    :config
+    (require 'spaceline-config)
+    (setq powerline-default-separator (quote arrow))
+    (spaceline-spacemacs-theme))
+#+end_src
+
+Installing diminish
+#+begin_src emacs-lisp
+  (use-package diminish
+    :ensure t
+    :init
+    (diminish 'yas-minor-mode)
+    (diminish 'which-key-mode)
+    (diminish 'subword-mode)
+    (diminish 'beacon-mode))
+#+end_src
 * Terminal
 ** Install vterm
 #+begin_src emacs-lisp
@@ -163,19 +184,6 @@ Installing lsp-ui
 #+begin_src emacs-lisp
   (use-package lsp-ui
     :ensure t)
-#+end_src
-* IDO
-#+begin_src emacs-lisp
-  (use-package ido
-    :ensure t
-    :init
-    (ido-mode t))
-
-  (use-package ido-vertical-mode
-    :ensure t
-    :init
-    (ido-vertical-mode 1))
-  (setq ido-vertical-define-keys 'C-n-and-C-p-only)
 #+end_src
 * Avy
 #+begin_src emacs-lisp
@@ -297,3 +305,16 @@ Uses y-or-n-p instead of 'yes-or-no-p
     :init
     (add-hook 'after-init-hook 'global-company-mode))
 #+end_src
+* IDO
+#+begin_src emacs-lisp
+  (use-package ido
+    :ensure t
+    :init
+    (ido-mode t))
+
+  (use-package ido-vertical-mode
+    :ensure t
+    :init
+    (ido-vertical-mode 1))
+  (setq ido-vertical-define-keys 'C-n-and-C-p-only)
+#+End_src
