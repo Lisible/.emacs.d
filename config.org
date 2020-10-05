@@ -170,6 +170,12 @@ Installing lsp-ui
     :ensure t
     :init
     (ido-mode t))
+
+  (use-package ido-vertical-mode
+    :ensure t
+    :init
+    (ido-vertical-mode 1))
+  (setq ido-vertical-define-keys 'C-n-and-C-p-only)
 #+end_src
 * Avy
 #+begin_src emacs-lisp
