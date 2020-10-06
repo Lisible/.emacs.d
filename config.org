@@ -92,8 +92,9 @@ Installing diminish
 * Terminal
 ** Install vterm
 #+begin_src emacs-lisp
-  (use-package vterm
-    :ensure t)
+  (if (string-equal system-type "gnu/linux")
+    (use-package vterm :ensure t)
+    ())
 #+end_src
 
 * Projects
