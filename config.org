@@ -311,11 +311,11 @@ Uses y-or-n-p instead of 'yes-or-no-p
     :init
     (ido-mode t))
 
-  (use-package ido-vertical-mode
-    :ensure t
-    :init
-    (ido-vertical-mode 1))
-  (setq ido-vertical-define-keys 'C-n-and-C-p-only)
+;  (use-package ido-vertical-mode
+;    :ensure t
+;    :init
+;    (ido-vertical-mode 1))
+;  (setq ido-vertical-define-keys 'C-n-and-C-p-only)
 #+End_src
 * Swiper
 #+begin_src emacs-lisp
