@@ -297,7 +297,6 @@ Uses y-or-n-p instead of 'yes-or-no-p
   (setq auto-save-default nil)
 #+end_src
 
-
 * Autocompletion
 #+begin_src emacs-lisp
   (use-package company
@@ -318,3 +317,9 @@ Uses y-or-n-p instead of 'yes-or-no-p
     (ido-vertical-mode 1))
   (setq ido-vertical-define-keys 'C-n-and-C-p-only)
 #+End_src
+* Swiper
+#+begin_src emacs-lisp
+  (use-package swiper
+    :ensure t
+    :bind ("C-s" . swiper))
+#+end_src
