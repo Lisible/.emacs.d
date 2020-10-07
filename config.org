@@ -310,8 +310,13 @@ Uses y-or-n-p instead of 'yes-or-no-p
   (use-package helm
     :ensure t
     :init
-    (ido-mode t)
+    (helm-mode 1)
     :bind ("M-x" . 'helm-M-x))
+
+  (use-package helm-projectile
+    :ensure t
+    :init
+    (helm-projectile-on))
 #+End_src
 * Swiper
 #+begin_src emacs-lisp
