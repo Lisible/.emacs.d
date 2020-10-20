@@ -305,22 +305,26 @@ Uses y-or-n-p instead of 'yes-or-no-p
     :init
     (add-hook 'after-init-hook 'global-company-mode))
 #+end_src
-* Helm
+* Ivy
 #+begin_src emacs-lisp
-  (use-package helm
+  (use-package ivy
     :ensure t
     :init
-    (helm-mode 1)
-    :bind ("M-x" . 'helm-M-x))
+    (ivy-mode 1)
+    :config
+    (setq ivy-use-virtual-buffers t)
+    (setq enable-recursive-minibuffers t))
 
-  (use-package helm-projectile
+  (use-package counsel
     :ensure t
-    :init
-    (helm-projectile-on))
-#+End_src
-* Swiper
-#+begin_src emacs-lisp
+    :after ivy
+    :config
+    (counsel-mode t)
+    (setq ivy-initial-inputs-alist nil))
+
   (use-package swiper
     :ensure t
-    :bind ("C-s" . swiper))
+    :after ivy
+    :bind
+    ("C-s" . 'swiper-isearch))
 #+end_src
