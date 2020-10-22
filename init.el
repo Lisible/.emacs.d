@@ -37,7 +37,7 @@
  '(nrepl-message-colors
    '("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3"))
  '(package-selected-packages
-   '(monokai-theme counsel zenburn-theme helm-projectile helm swiper cargo avy lsp-mode magit humanoid-themes projectile neotree elcord org-bullets beacon gruvbox-theme which-key use-package))
+   '(counsel-projectile monokai-theme counsel zenburn-theme helm-projectile helm swiper cargo avy lsp-mode magit humanoid-themes projectile neotree elcord org-bullets beacon gruvbox-theme which-key use-package))
  '(pdf-view-midnight-colors '("#DCDCCC" . "#383838")))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

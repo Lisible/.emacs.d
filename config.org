@@ -331,6 +331,12 @@ Uses y-or-n-p instead of 'yes-or-no-p
     (counsel-mode t)
     (setq ivy-initial-inputs-alist nil))
 
+  (use-package counsel-projectile
+    :ensure t
+    :after counsel
+    :config
+    (counsel-projectile-mode t))
+
   (use-package swiper
     :ensure t
     :after ivy
