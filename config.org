@@ -216,6 +216,15 @@ Add flycheck support
     (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
 #+end_src
 
+Add cargo support
+#+begin_src emacs-lisp
+  (use-package cargo
+    :ensure t
+    :after rust-mode
+    :config
+    (add-hook 'rust-mode-hook 'cargo-minor-mode))
+#+end_src
+
 * Elcord
 #+begin_src emacs-lisp
   (use-package elcord
