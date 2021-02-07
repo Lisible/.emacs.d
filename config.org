@@ -1,101 +1,102 @@
-* Basics
-Set default encoding
-#+begin_src emacs-lisp
-  (prefer-coding-system 'utf-8)
-  (set-default-coding-systems 'utf-8)
-  (set-language-environment 'utf-8)
-  (set-selection-coding-system 'utf-8)
-#+end_src
+* General settings
+** Basics
+ Set default encoding
+ #+begin_src emacs-lisp
+   (prefer-coding-system 'utf-8)
+   (set-default-coding-systems 'utf-8)
+   (set-language-environment 'utf-8)
+   (set-selection-coding-system 'utf-8)
+ #+end_src
 
-Disabling menu/tool/scroll bars
-#+begin_src emacs-lisp
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
-#+end_src
+ Disabling menu/tool/scroll bars
+ #+begin_src emacs-lisp
+ (menu-bar-mode -1)
+ (tool-bar-mode -1)
+ (scroll-bar-mode -1)
+ #+end_src
 
-Disabling startup message
-#+begin_src emacs-lisp
-(setq inhibit-startup-message t)
-#+end_src
+ Disabling startup message
+ #+begin_src emacs-lisp
+ (setq inhibit-startup-message t)
+ #+end_src
 
-Set initial buffer to dashboard
-#+begin_src emacs-lisp
-  (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
-#+end_src
+ Set initial buffer to dashboard
+ #+begin_src emacs-lisp
+   (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
+ #+end_src
 
-Show line numbers
-#+begin_src emacs-lisp
-  (global-display-line-numbers-mode)
-#+end_src
+ Show line numbers
+ #+begin_src emacs-lisp
+   (global-display-line-numbers-mode)
+ #+end_src
 
-Show columns
-#+begin_src emacs-lisp
-  (column-number-mode 1)
-#+end_src
+ Show columns
+ #+begin_src emacs-lisp
+   (column-number-mode 1)
+ #+end_src
 
-Subword
-#+begin_src emacs-lisp
-  (global-subword-mode 1)
-#+end_src
+ Subword
+ #+begin_src emacs-lisp
+   (global-subword-mode 1)
+ #+end_src
 
-Electric
-#+begin_src emacs-lisp
-  (setq electric-pair-pairs '(
-			      (?\( . ?\))
-			      (?\[ . ?\])
-			      ))
-  (electric-pair-mode t)
-#+end_src
+ Electric
+ #+begin_src emacs-lisp
+   (setq electric-pair-pairs '(
+			       (?\( . ?\))
+			       (?\[ . ?\])
+			       ))
+   (electric-pair-mode t)
+ #+end_src
 
-Config editing
-#+begin_src emacs-lisp
-  (defun config-visit ()
-    (interactive)
-    (find-file "~/.emacs.d/config.org"))
-  (global-set-key (kbd "C-c e") 'config-visit)
-#+end_src
+ Config editing
+ #+begin_src emacs-lisp
+   (defun config-visit ()
+     (interactive)
+     (find-file "~/.emacs.d/config.org"))
+   (global-set-key (kbd "C-c e") 'config-visit)
+ #+end_src
 
-Config reloading
-#+begin_src emacs-lisp
-  (defun config-reload ()
-    (interactive)
-    (org-babel-load-file (expand-file-name "~/.emacs.d/config.org")))
-  (global-set-key (kbd "C-c r") 'config-reload)
-#+end_src
+ Config reloading
+ #+begin_src emacs-lisp
+   (defun config-reload ()
+     (interactive)
+     (org-babel-load-file (expand-file-name "~/.emacs.d/config.org")))
+   (global-set-key (kbd "C-c r") 'config-reload)
+ #+end_src
 
-Move backup files in a specific folder
-#+begin_src emacs-lisp
-  (setq backup-directory-alist '(("" . "~/.emacs.d/backup")))
-#+end_src
+ Move backup files in a specific folder
+ #+begin_src emacs-lisp
+   (setq backup-directory-alist '(("" . "~/.emacs.d/backup")))
+ #+end_src
 
-Disabling emacs auto-saves
-#+begin_src emacs-lisp
-  (setq auto-save-default nil)
-#+end_src
+ Disabling emacs auto-saves
+ #+begin_src emacs-lisp
+   (setq auto-save-default nil)
+ #+end_src
 
-Add emoji support
-#+begin_src emacs-lisp
-  (use-package emojify
-    :ensure t
-    :hook (after-init . global-emojify-mode))
-#+End_src
-* Modeline
-Installing doom-modeline
-#+begin_src emacs-lisp
-  (use-package doom-modeline
-    :ensure t
-    :init (doom-modeline-mode 1))
-#+end_src
-* Terminal
-** Install vterm
-#+begin_src emacs-lisp
-  (if (string-equal system-type "gnu/linux")
-    (use-package vterm :ensure t)
-    ())
-#+end_src
+ Add emoji support
+ #+begin_src emacs-lisp
+   (use-package emojify
+     :ensure t
+     :hook (after-init . global-emojify-mode))
+ #+End_src
+** Modeline
+  Installing doom-modeline
+  #+begin_src emacs-lisp
+    (use-package doom-modeline
+      :ensure t
+      :init (doom-modeline-mode 1))
+  #+end_src
+** Terminal
+*** Install vterm
+ #+begin_src emacs-lisp
+   (if (string-equal system-type "gnu/linux")
+     (use-package vterm :ensure t)
+     ())
+ #+end_src
 
-* Projects
+** Projects
 
 To manage project files we need a nice file tree
 #+begin_src emacs-lisp
@@ -143,7 +144,7 @@ And add inline messages for flycheck
     (add-hook 'flycheck-mode-hook #'flycheck-inline-mode))
 #+end_src
 
-* Snippets
+** Snippets
 Let's install yasnippet
 #+begin_src emacs-lisp
   (use-package yasnippet
@@ -156,13 +157,13 @@ Now we can add snippets !
   (use-package yasnippet-snippets
     :ensure t)
 #+end_src
-* Git
+** Git
 Let's install magit for git support
 #+begin_src emacs-lisp
   (use-package magit
     :ensure t)
 #+end_src
-* Org
+** Org
 ** basic config
 #+begin_src emacs-lisp
   (setq org-src-window-setup 'current-window)
@@ -175,7 +176,7 @@ Let's install magit for git support
     (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 #+end_src
 
-* LSP
+** LSP
 Installing LSP mode
 #+begin_src emacs-lisp
   (use-package lsp-mode
@@ -192,54 +193,15 @@ Installing lsp-ui
   (use-package lsp-ui
     :ensure t)
 #+end_src
-* Avy
+** Avy
 #+begin_src emacs-lisp
   (use-package avy
     :ensure t
     :bind
     ("M-s" . avy-goto-char))
 #+end_src
-* Rust
-Let's install rust-mode !
-#+begin_src emacs-lisp
-  (use-package rust-mode
-    :ensure t)
-#+end_src
 
-Add some formatting setup
-#+begin_src emacs-lisp
-  (add-hook 'rust-mode-hook
-	    (lambda () (setq indent-tabs-mode nil)))
-  (setq rust-format-on-save t)
-#+end_src
-
-Add flycheck support
-#+begin_src emacs-lisp
-  (use-package flycheck-rust
-    :ensure t
-    :after rust-mode
-    :config
-    (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
-#+end_src
-
-Add cargo support
-#+begin_src emacs-lisp
-  (use-package cargo
-    :ensure t
-    :after rust-mode
-    :config
-    (add-hook 'rust-mode-hook 'cargo-minor-mode))
-#+end_src
-
-* Elcord
-#+begin_src emacs-lisp
-  (use-package elcord
-    :ensure t
-    :init
-    (elcord-mode))
-#+end_src
-
-* Which-key
+** Which-key
 #+begin_src emacs-lisp
   (use-package which-key
     :ensure t
@@ -247,7 +209,7 @@ Add cargo support
     (which-key-mode))
 #+end_src
 
-* switch-window
+** switch-window
 #+begin_src emacs-lisp
   (use-package switch-window
     :ensure t
@@ -261,7 +223,7 @@ Add cargo support
     :bind
     ([remap other-window] . switch-window))
 #+end_src
-* Rainbow
+** Rainbow
 #+begin_src emacs-lisp
   (use-package rainbow-mode
     :ensure t
@@ -272,7 +234,7 @@ Add cargo support
     :init
     (rainbow-delimiters-mode 1))
 #+end_src
-* Beacon
+** Beacon
 #+begin_src emacs-lisp
   (use-package beacon
     :ensure t
@@ -280,47 +242,14 @@ Add cargo support
     (beacon-mode 1))
 #+end_src
 
-* Utilities
-** y-or-n-p
-Uses y-or-n-p instead of 'yes-or-no-p
-#+begin_src emacs-lisp
-  (defalias 'yes-or-no-p 'y-or-n-p)
-#+end_src
-
-** Scroll conservatively
-#+begin_src emacs-lisp
-  (setq scroll-conservatively 100)
-#+end_src
-
-** Ring bell
-#+begin_src emacs-lisp
-  (setq ring-bell-function 'ignore)
-#+end_src 
-
-** Line highlighting
-#+begin_src emacs-lisp
-  (when window-system (global-hl-line-mode t))
-#+end_src
-
-** Symbols prettifying
-#+begin_src emacs-lisp
-  (when window-system (global-prettify-symbols-mode t))
-#+end_src
-
-** Backups, autosaves
-#+begin_src emacs-lisp
-  (setq make-backup-file nil)
-  (setq auto-save-default nil)
-#+end_src
-
-* Autocompletion
+** Autocompletion
 #+begin_src emacs-lisp
   (use-package company
     :ensure t
     :init
     (add-hook 'after-init-hook 'global-company-mode))
 #+end_src
-* Ivy
+** Ivy
 #+begin_src emacs-lisp
   (use-package ivy
     :ensure t
@@ -357,12 +286,40 @@ Uses y-or-n-p instead of 'yes-or-no-p
     :bind
     ("C-s" . 'swiper-isearch))
 #+end_src
-* pdf-tools
+** Dashboard
+** Others
+*** y-or-n-p
+Uses y-or-n-p instead of 'yes-or-no-p
 #+begin_src emacs-lisp
-  (use-package pdf-tools
-    :ensure t)
+  (defalias 'yes-or-no-p 'y-or-n-p)
 #+end_src
-* Dashboard
+
+*** Scroll conservatively
+#+begin_src emacs-lisp
+  (setq scroll-conservatively 100)
+#+end_src
+
+*** Ring bell
+#+begin_src emacs-lisp
+  (setq ring-bell-function 'ignore)
+#+end_src 
+
+*** Line highlighting
+#+begin_src emacs-lisp
+  (when window-system (global-hl-line-mode t))
+#+end_src
+
+*** Symbols prettifying
+#+begin_src emacs-lisp
+  (when window-system (global-prettify-symbols-mode t))
+#+end_src
+
+*** Backups, autosaves
+#+begin_src emacs-lisp
+  (setq make-backup-file nil)
+  (setq auto-save-default nil)
+#+end_src
+
 #+begin_src emacs-lisp
   (use-package dashboard
     :ensure t
@@ -377,4 +334,87 @@ Uses y-or-n-p instead of 'yes-or-no-p
 			    (projects . 5)
 			    (agenda . 5)))
     (dashboard-setup-startup-hook))
+#+end_src
+
+* Languages
+** Rust
+Let's install rust-mode !
+#+begin_src emacs-lisp
+  (use-package rust-mode
+    :ensure t)
+#+end_src
+
+Add some formatting setup
+#+begin_src emacs-lisp
+  (add-hook 'rust-mode-hook
+	    (lambda () (setq indent-tabs-mode nil)))
+  (setq rust-format-on-save t)
+#+end_src
+
+Add flycheck support
+#+begin_src emacs-lisp
+  (use-package flycheck-rust
+    :ensure t
+    :after rust-mode
+    :config
+    (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+#+end_src
+
+Add cargo support
+#+begin_src emacs-lisp
+  (use-package cargo
+    :ensure t
+    :after rust-mode
+    :config
+    (add-hook 'rust-mode-hook 'cargo-minor-mode))
+#+end_src
+
+** Javascript
+#+begin_src emacs-lisp
+  (use-package js2-mode
+    :ensure t
+    :config
+    (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode)))
+#+end_src
+** Common Lisp
+#+begin_src emacs-lisp
+  (use-package slime
+    :ensure t)
+  (setq inferior-lisp-program "sbcl")
+  (with-eval-after-load 'flycheck
+    (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
+#+end_src
+** Markdown
+
+Add autofill mode by default
+#+begin_src emacs-lisp
+  (add-hook 'markdown-mode-hook 'auto-fill-mode)
+#+end_src
+
+#+RESULTS:
+| auto-fill-mode |
+* Utilities
+** Ledger
+
+Install ledger
+#+begin_src emacs-lisp
+  (use-package ledger-mode
+    :ensure t)
+#+end_src
+
+Use ledger-mode automatically for .ledger files
+#+begin_src emacs-lisp
+  (add-to-list 'auto-mode-alist '("\\.ledger\\'" . ledger-mode))
+#+end_src
+** pdf-tools
+#+begin_src emacs-lisp
+  (use-package pdf-tools
+    :ensure t)
+#+end_src
+** Elcord
+#+begin_src emacs-lisp
+  (use-package elcord
+    :ensure t
+    :init
+    (elcord-mode))
 #+end_src

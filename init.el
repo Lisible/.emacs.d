@@ -51,7 +51,7 @@
    '("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3"))
  '(org-agenda-files '("~/.emacs.d/todo.org"))
  '(package-selected-packages
-   '(dashboard doom-modeline doom-themes pdf-tools ivy-posframe counsel-projectile monokai-theme counsel zenburn-theme helm-projectile helm swiper cargo avy lsp-mode magit humanoid-themes projectile neotree elcord org-bullets beacon gruvbox-theme which-key use-package))
+   '(ledger-mode leger-mode slime js2-mode dashboard doom-modeline doom-themes pdf-tools ivy-posframe counsel-projectile monokai-theme counsel zenburn-theme helm-projectile helm swiper cargo avy lsp-mode magit humanoid-themes projectile neotree elcord org-bullets beacon gruvbox-theme which-key use-package))
  '(pdf-view-midnight-colors '("#DCDCCC" . "#383838"))
  '(pos-tip-background-color "#FFFACE")
  '(pos-tip-foreground-color "#272822")
